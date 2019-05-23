@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script language="javascript">
+var users = [{ departmentId: '001', username: 'laibx', point: '4.0' },
+{ departmentId: '002', username: 'huycv1', point: '3.9' },
+{ departmentId: '002', username: 'huycv2', point: '3.8' },
+{ departmentId: '002', username: 'huycv3', point: '3.7' },
+{ departmentId: '002', username: 'huycv4', point: '3.6' },
+{ departmentId: '003', username: 'chinhvd', point: '3.5' }];
+var departments = [{ id: '001', code: 'abc1', name: 'product1', companyId: '001' },
+{ id: '002', code: 'abc2', name: 'product21', companyId: '002' },
+{ id: '003', code: 'abc2', name: 'product22', companyId: '002' },
+{ id: '004', code: 'abc2', name: 'product23', companyId: '002' },
+{ id: '005', code: 'abc3', name: 'product3', companyId: '003' }];
+var companies = [{ id: '001', code: 'xyz1', name: 'vietis1' },
+{ id: '002', code: 'xyz2', name: 'vietis2' },
+{ id: '003', code: 'xyz3', name: 'vietis3' }]
+var result = new Array();
+
+function return_result(a, b, c) {
+    for (var i = 0; i < c.length; i++) {
+        var companieschild = new Object();
+        companieschild.companyCode = c[i].code;
+        companieschild.companyName = c[i].name;
+        var arrdepchild = new Array();
+        for (var j = 0; j < b.length; j++) {
+            if (c[i].id == b[j].companyId) {
+                var depchild = new Object();
+                depchild.code = b[j].code;
+                depchild.name = b[j].name;
+                var arruserchild = new Array();
+                for (var k = 0; k < a.length; k++) {
+                    if (a[k].departmentId == b[j].id) {
+                        var userschild = new Object();
+                        userschild.name = a[k].username;
+                        userschild.point = a[k].point;
+                        arruserchild.push(userschild);
+                    }
+                }
+                depchild.users = arruserchild;
+                arrdepchild.push(depchild);
+            }
+
+        }
+        companieschild.departments = arrdepchild;
+        result.push(companieschild);
+    }
+}
+
+return_result(users, departments, companies);
+
+for (var i = 0; i < result.length; i++) {
+    document.writeln(result[i].companyCode + ' ' + result[i].companyName + ':');
+    document.write("</br>");
+    for (var j = 0; j < result[i].departments.length;j++) {
+        document.writeln(result[i].departments[j].code + ' ' + result[i].departments[j].name + ':');
+        document.write("</br>");
+        for (var k = 0; k < result[i].departments[j].users.length;k++) {
+            document.writeln(result[i].departments[j].users[k].name + ' ' + result[i].departments[j].users[k].point);
+            document.write("</br>");
+        }
+    }
+}
+        </script>
+    </body>
+</html>
