@@ -35,4 +35,5 @@ return_result(users, departments, companies);
 
 for (var i = 0; i < result.length; i++) {
     document.writeln(result[i].companyCode + ' ' + result[i].companyName + ' ' + result[i].departmentCode + ' ' + result[i].departmentName + ' ' + result[i].username + ' ' + result[i].point);
+    document.write("</br>");
 }
